@@ -1,0 +1,201 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}主页{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/home.css">
+    <script src="../../static/js/home.js"></script>
+{% endblock linkscript %}
+
+{% block center %}
+    <div class="clearFix">
+        <!--轮播图开始-->
+        <div class="Photo-frame">
+            <ul class="picBox clearFix" >
+                <li style="display: block"><a href="#"><img src="../../static/img/picture1.jpg" alt=""></a></li>
+                <li><a href="#"><img src="../../static/img/picture2.jpg" alt=""></a></li>
+                <li><a href="#"><img src="../../static/img/picture3.jpg" alt=""></a></li>
+                <li><a href="#"><img src="../../static/img/picture4.jpg" alt=""></a></li>
+            </ul>
+            <div class="arrow" id="next"> > </div>
+            <div class="arrow" id="prev"> < </div>
+            <div class="circles">
+                <span ind="0" style="box-shadow: 0 0 10px 5px rgba(0,0,0,.7) inset"></span>
+                <span ind="1"></span>
+                <span ind="2"></span>
+                <span ind="3"></span>
+            </div>
+        </div>
+        <!--轮播图结束-->
+        <!--{#公告栏开始#}-->
+        <div class="notice">
+            <div class="notice-title">最新公告</div>
+            <div class="notice-body">
+                <ul style="height: 300px">
+                    {% for i in noticeList %}
+                        <li>[<a href="/hospitals/{{ i.nhospital_id }}">{{ i.nhospital }}</a>]<a href="/onenews/{{ i.id }}" style="color:black">{{ i.nname }}</a></li>
+                    {% endfor %}
+                </ul>
+                <span  style="float: right"><a href="/news/">更多>>></a></span>
+            </div>
+        </div>
+        <!--{#公告栏结束#}-->
+    </div>
+    <!--医院选择开始-->
+    <div class="tab">
+        <ul class="tab-title  clearFix">
+            <li style="background-color: #5eb0ff">按医院等级挂号</li>
+            <li>按地区挂号</li>
+            <li>按疾病挂号</li>
+            <li>按科室挂号</li>
+        </ul>
+        <ul class="tab-body">
+            <li style="display: block">
+                <div class="choice clearFix">
+                    <div class="choice-title">全部：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">三级甲等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList1 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">三级乙等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList2 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">三级丙等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList3 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">二级甲等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList4 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">二级乙等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList5 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">二级丙等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList6 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">一级甲等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList7 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">一级乙等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList8 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="choice clearFix">
+                    <div class="choice-title">一级丙等：</div>
+                    <div class="choice-body">
+                        {% for i in hospitalList9 %}
+                            <span><a href="/hospitals/{{ i.id }}">{{ i.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                        {% empty %}
+                            <span>本地区没有该等级的医院</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+            <li>
+                {% for i in countryList %}
+                    <div class="choice clearFix">
+                        <div class="choice-title">{{ i.cname }}：</div>
+                        <div class="choice-body">
+                            {% for j in hospitalList %}
+                                {% if j.cid_id == i.id %}
+                                    <span><a href="/hospitals/{{ j.id }}/">{{ j.hname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </li>
+            <li>
+                {% for i in subjectList %}
+                    <div class="choice clearFix">
+                        <div class="choice-title">{{ i.sname }}：</div>
+                        <div class="choice-body clearFix">
+                            {% for j in illnessList%}
+                                {% if j.sid_id == i.id %}
+                                    <span><a href="/forillness/{{ j.id }}">{{ j.iname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </li>
+            <li>
+                {% for i in subjectList %}
+                    <div class="choice clearFix">
+                        <div class="choice-title">{{ i.sname }}：</div>
+                        <div class="choice-body">
+                            {% for j in dsList %}
+                                {% if j.sid_id == i.id %}
+                                    <span><a href="/fords/{{ j.id }}/">{{ j.dsname }}</a>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+    <!--医院选择结束-->
+{% endblock center %}

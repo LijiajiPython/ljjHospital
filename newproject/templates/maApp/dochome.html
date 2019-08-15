@@ -1,0 +1,269 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}医生个人信息{% endblock title %}
+
+{% block linkscript %}
+<link rel="stylesheet" href="../../static/css/fords.css">
+<!--<link rel="stylesheet" href="../../static/css/doctors.css">-->
+{% endblock linkscript %}
+{% block center %}
+<div class="fords">
+    {% if request.session.is_login %}
+        {% if request.session.is_doctor %}
+            <div class="fords-title">{{ request.session.user_name }}</div>
+            <div class="fords-middle clearFix">
+                <div class="clearFix">
+                    <div id="fords-middle-docimg">
+                        <img src="../../{{ doctorList.dphoto }}" alt="">
+                    </div>
+                    <div class="fords-middle-doctable">
+                        <table class="fords-middle-table">
+                            <tr>
+                                <td><h4>性别:</h4></td>
+                                <td><h4>
+                                    {% if doctorList.dgender == 'female' %}
+                                    女
+                                    {% else %}
+                                    男
+                                    {% endif %}
+                                </h4></td>
+                            </tr>
+                            <tr>
+                                <td><h4>出生日期:</h4></td>
+                                <td><h4>{{ doctorList.dbirth }}</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h4>电话:</h4></td>
+                                <td><h4>{{ doctorList.dtel }}</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h4>邮箱:</h4></td>
+                                <td><h4>{{ doctorList.demail }}</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h4>所属科室:</h4></td>
+                                <td><h4>{{ doctorList.rid }}</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h4>级别:</h4></td>
+                                <td>
+                                    {% if j.dlevel == '1' %}
+                                    <h4>医师</h4>
+                                    {% elif j.dlevel == '2' %}
+                                    <h4>主治医师</h4>
+                                    {% elif j.dlevel == '3' %}
+                                    <h4>副主任医师</h4>
+                                    {% else %}
+                                    <h4>主任医师</h4>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="fords-middle-doctext">
+                <h3 style="text-align: center">个人简介</h3>
+                <h5 style="text-align: left;padding:0 50px;">{{ doctorList.dtext }}</h5>
+            </div>
+            <div class="fords-body">
+                <table class="fords-middle-table">
+                    <h3 style="text-align: center">本周挂号情况</h3>
+                    {% for j in messageList %}
+                    {% if j.rid_id == doctorList.rid_id %}
+                    <tr>
+                        <td><h4>日期:{{ j.mname }}</h4></td>
+                        <td><h4>人数:{{ j.mnumber }}</h4></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="fords-body">
+                <h3 style="text-align: center">值班时间</h3>
+                <table class="fords-body-table">
+                <tr style="background-color: #67c8ff">
+                    <td></td>
+                    <td><h3>一</h3></td>
+                    <td><h3>二</h3></td>
+                    <td><h3>三</h3></td>
+                    <td><h3>四</h3></td>
+                    <td><h3>五</h3></td>
+                    <td><h3>六</h3></td>
+                    <td><h3>七</h3></td>
+                </tr>
+                <tr>
+                    <td><h3>上午</h3></td>
+                    <td><div class="workdoctor">{{ roomList.mon1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="mon1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.tue1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="tue1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.wed1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="wed1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.thu1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="thu1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.fri1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="fri1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.sat1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="sat1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.sun1 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="sun1" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h3>下午</h3></td>
+                    <td><div class="workdoctor">{{ roomList.mon2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="mon2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.tue2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="tue2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.wed2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="wed2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.thu2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="thu2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.fri2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="fri2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.sat2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="sat2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                    <td><div class="workdoctor">{{ roomList.sun2 }}</div>
+                        <form action="/dochome/{{ doctorList.id }}/" method="post">
+                            <div style="height: 0;overflow: hidden">
+                                <input type="radio" name="docname" value="{{ request.session.user_name }}" checked>
+                                <input type="radio" name="worktime" value="sun2" checked>
+                            </div>
+                            <div class="button"><button class="btn" type="submit">确定值班</button></div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <div class="fords-body clearFix">
+                <h3 style="text-align: center">患者留言</h3>
+                {% for i in boardpages %}
+                <div class="board-body clearFix">
+                    <h4>{{ i.uid }}:</h4>
+                    <h6 style="text-align: left">{{ i.createtime }}</h6>
+                    <p>{{ i.btext }}</p>
+                    <h4 style="border-top:1px dashed black;padding-top:5px;">医生回复:</h4>
+                    <form action="/dochome/{{ request.session.user_id }}/" method="post">
+                        <div style="height: 0;overflow: hidden">
+                            <input type="radio" name="boardid" value="{{ i.id }}" checked>
+                        </div>
+                        <textarea rows="6" cols="100" name="breply" style="resize: none;" placeholder="{{ i.breply }}" required></textarea>
+                        <button type="submit" class="btn btn-primary pull-right" value="">修改回复</button>
+                    </form>
+                </div>
+                {% endfor %}
+                <div id="pages" class="text-center" >
+                <nav>
+                    <ul class="pagination">
+                        <li class="step-links">
+                            {% if boardpages.has_previous %}
+                            <a class='active' href="?page={{ boardpages.previous_page_number }}">上一页</a>
+                            {% endif %}
+
+                            <span class="current">
+                        第{{ boardpages.number }}页/共 {{ boardpages.paginator.num_pages }}页</span>
+
+                            {% if boardpages.has_next %}
+                            <a class='active' href="?page={{ boardpages.next_page_number }}">下一页</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

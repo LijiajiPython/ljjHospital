@@ -1,0 +1,34 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}登录{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+
+
+{% block center %}
+<div class="fords">
+    {% if request.session.is_login %}
+        {% if request.session.is_doctor %}
+            <div class="fords-title">您好,{{ request.session.user_name }}医生！欢迎回来！</div>
+        {% elif request.session.is_user %}
+            <div class="fords-title">您好,{{ request.session.user_name }}！欢迎回来！</div>
+        {% endif %}
+        <div class="fords-middle" style="padding:50px 0;">
+            <h4>欢迎使用本系统</h4>
+        </div>
+    {% else %}
+        <div class="fords-title">您尚未登录，只能访问公开内容！</div>
+        <div class="fords-middle" style="padding:50px 0;">
+            <h4>请先登录</h4>
+        </div>
+    {% endif %}
+    <div class="fords-middle clearFix">
+        <a href="/home/"><button class="btn btn-primary pull-right">返回首页</button></a>
+    </div>
+    <div class="fords-middle"></div>
+
+</div>
+{% endblock %}

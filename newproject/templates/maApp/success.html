@@ -1,0 +1,38 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}
+{% if request.session.is_user %}
+预约成功
+{% elif request.session.is_doctor %}
+修改成功
+{% endif %}
+{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+
+
+{% block center %}
+    <div class="fords">
+        {% if request.session.is_login %}
+            {% if request.session.is_user %}
+                <div class="fords-title" style="height: 250px;line-height:300px;background-color:#f2fcff;border-bottom:none">
+                    <p>{{ request.session.user_name }},恭喜您预约成功</p>
+                </div>
+                <h4 style="text-align: center">可在<a href="/userhome/{{ request.session.user_id }}">个人信息</a>处查询预约记录</h4>
+            {% elif request.session.is_doctor %}
+                <div class="fords-title" style="height: 250px;line-height:300px;background-color:#f2fcff;border-bottom:none">
+                    <p>修改成功</p>
+                </div>
+                <h4 style="text-align: center">可在<a href="/dochome/{{ request.session.user_id }}">个人信息</a>处继续修改</h4>
+            {% endif %}
+        {% else %}
+            <h2>您尚未登录，只能访问公开内容！</h2>
+        {% endif %}
+        <div class="clearFix" style="margin:30px auto;">
+            <a href="/home/"><button class="btn btn-primary pull-right" value="" style="margin-left: 100px">返回首页</button></a>
+        </div>
+    </div>
+{% endblock %}

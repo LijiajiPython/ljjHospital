@@ -1,0 +1,107 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+a {
+    color:black;
+    text-decoration: none;
+}
+.clearFix::after,.clearFix::before {
+    content: "";
+    line-height: 0; /*行高默认的清除*/
+    display: block; /*伪元素是行内,需要转换成块级*/
+    clear: both;
+}
+body {
+    /*background-color: #f2fcff;*/
+}
+/*导航栏开始*/
+.navigator {
+    background-color: #5eb0ff;
+    height:40px;
+    padding:0 10%;
+}
+.navigator .span1 {
+    height:40px;
+    background-color:#9ff3ff;
+    font-size: 15px;
+    color: rgba(18,25,26,0.81);
+    padding:0 20px;
+    margin-right: 20px;
+    line-height:40px;
+}
+.navigator .span1:hover {
+    background-color:#e6fcff;
+}
+.navigator .span1 {
+    float:left;
+}
+.navigator .span2 {
+    height:40px;
+    line-height:40px;
+    padding-right:20px;
+    font-size: 15px;
+    color:white;
+    float:left;
+}
+/*.navigator .span2 {*/
+    /*float:right;*/
+/*}*/
+
+/*导航栏结束*/
+/*logo开始*/
+.logo {
+    width:70%;
+    height:100px;
+    line-height:100px;
+    margin:0 auto;
+    padding:0 50px;
+}
+h1 {
+    float:left;
+    font-size:40px;
+}
+.logo .formspan {
+    float:right;
+    height:40px;
+    padding:0 10px;
+    margin:30px 0;
+    color: rgba(18,25,26,0.81);
+    background-color:#9ff3ff;
+    font-size:20px;
+    line-height: 40px;
+    border:1px black solid;
+}
+.logo .formspan:hover {
+    background-color:#e6fcff;
+}
+.form {
+    height: 40px;
+    /*padding-top:10px;*/
+    margin:30px 0;
+    float:right;
+}
+#text {
+    height: 40px;
+    width:300px;
+    border:1px black solid;
+    float:left;
+}
+/*logo结束*/
+/*版心开始*/
+.center {
+    width:1000px;
+    height:auto;
+    margin:0 auto;
+    padding-bottom:30px;
+    /*background-color: #ccf8ff;*/
+    background-color: #f2fcff;
+}
+/*版心结束*/
+/*尾部开始*/
+footer {
+    background-color: #5eb0ff;
+    height:100px;
+}
+/*尾部结束*/

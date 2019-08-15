@@ -1,0 +1,192 @@
+.fords {
+    width:100%;
+    /*background-color: #e8e9ff;*/
+    /*padding:20px;*/
+    height:auto;
+    margin:0 auto;
+}
+.fords-title {
+    width:100%;
+    font-size:25px;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px black solid;
+    background-color: #67c8ff;
+}
+.fords-middle {
+    width:100%;
+    margin:0 auto;
+    padding:30px 50px;
+    text-align: center;
+    background-color: #f1f4ff;
+}
+.fords-middle a {
+    color:black;
+}
+.fords-middle-each {
+    width:152px;
+    margin: 2.5%;
+    float:left;
+    border:1px black solid;
+}
+.fords-middle .fords-middle-each img {
+    width:150px;
+    height:150px;
+    display: block;
+    border-bottom: 1px black solid;
+}
+.fords-middle img {
+    width:400px;
+    height: 300px;
+    display:block;
+    margin:0 auto;
+}
+.fords-middle h5 {
+    text-align: center;
+}
+.fords-middle-table {
+    margin:0 auto;
+    padding:50px;
+}
+.fords-middle-table tr {
+    border-bottom: 1px black dashed;
+}
+.fords-middle-table td {
+    padding:0 20px;
+    text-align: left;
+}
+#fords-middle-docimg img {
+    width:200px;
+    height:200px;
+    float:left;
+    margin-left:50px;
+}
+.fords-middle-doctable {
+    float:left;
+    /*padding-top:20px;*/
+    padding-left:100px;
+}
+.fords-middle-doctext {
+    width:100%;
+    height:auto;
+    margin:30px auto;
+    border-top:1px black dashed;
+}
+.fords-middle-doctext h4 {
+    text-align: left;
+}
+.fords-body {
+    width:100%;
+    height:auto;
+    border-top:1px black solid;
+    background-color: #fafbff;
+    padding-bottom: 30px;
+}
+.fords-body-each {
+    width:90%;
+    height:152px;
+    margin:10px auto;
+    border:1px black solid;
+    text-align:left;
+    background-color: #f2fcff;
+}
+.fords-body-each-img {
+    width:202px;
+    height:150px;
+    border-right:1px black solid;
+    float:left;
+    text-align: center;
+    line-height: 100%;
+}
+.fords-body-each-img img {
+    width:200px;
+    height:150px;
+}
+.fords-body-each-text {
+    padding:20px 30px;
+    line-height: 30px;
+    float:left;
+}
+.fords-body-each hr {
+    border-top:1px black solid;
+    margin:10px 0;
+}
+.fords-body a {
+    color:black;
+    text-decoration: none;
+}
+button a{
+    color:white;
+    text-decoration: none;
+}
+.fords-body-message {
+    width:14%;
+    height:120px;
+    border:1px black solid;
+    text-align: center;
+    margin-top:50px;
+    margin-bottom:10px;
+    float:left;
+}
+.fords-body-message hr {
+    border-top:1px solid black;
+    margin:5px 0;
+}
+.fords-body-table {
+    width:80%;
+    margin:20px auto;
+    border-top:1px solid black;
+    border-left:1px solid black;
+}
+.fords-body-table td {
+    width:10%;
+    height:50px;
+    border-bottom:1px solid black;
+    border-right:1px solid black;
+}
+.fords-body-table td h3 {
+    text-align: center;
+}
+.fords-body-table td .workdoctor {
+    height:50px;
+    line-height: 50px;
+    text-align: center;
+    font-size:15px;
+}
+.fords-body-table td .button {
+    width:80%;
+    height:40%;
+    margin:5px auto;
+}
+.fords-body-table td .button button {
+    width:100%;
+    height:30px;
+    background-color: #2aabd2;
+    padding:0 10px;
+    color:white;
+    text-align: center;
+    line-height: 20px;
+}
+.form-button {
+    width:40%;
+    margin:40px auto;
+}
+.form-button h4 {
+    text-align:center;
+}
+.board-body {
+    width:80%;
+    height:auto;
+    margin:20px auto;
+    padding:5px 20px;
+    border:1px solid black;
+}
+.board-body p{
+    text-align: left;
+}
+.board-body h4 {
+    text-align: left;
+}
+/*.fords-body-each h4 {*/
+    /*border-bottom:1px black solid;*/
+/*}*/

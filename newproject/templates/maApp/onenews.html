@@ -1,0 +1,19 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}公告内容{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+    <link rel="stylesheet" href="../../static/css/doctors.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">[{{ newsList.nhospital }}]{{ newsList.nname }}</div>
+        <div class="fords-middle">
+            <img src="../../{{ newsList.nphoto }}" alt="">
+            <h4 style="text-align: left">{{ newsList.ntext }}</h4>
+            <h5 style="float:right">发布时间:{{ newsList.createtime }}</h5>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+.news {
+    width:80%;
+    background-color: #f1f4ff;
+    padding:50px 50px;
+    height:450px;
+    margin:0 auto;
+}
+.news li {
+    list-style: none;
+    padding:5px 50px;
+    font-size: 18px;
+}
+.news a{
+    text-decoration: none;
+
+}
+/*.newsa {*/
+        /*color:black;*/
+/*}*/

@@ -1,0 +1,35 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}公告{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+    <link rel="stylesheet" href="../../static/css/news.css">
+{% endblock linkscript %}
+{% block center %}
+<div class="fords-title">公告栏</div>
+    <ul class="news">
+        {% for i in newspages %}
+            <li>[<a href="/hospitals/{{ i.nhospital_id }}">{{ i.nhospital }}</a>]<a href="/onenews/{{ i.id }}" class="newsa">{{ i.nname }}</a>({{ i.createtime }})</li>
+        {% endfor %}
+    </ul>
+            <div id="pages" class="text-center" >
+                <nav>
+                    <ul class="pagination">
+                        <li class="step-links">
+                            {% if newspages.has_previous %}
+                            <a class='active' href="?page={{ newspages.previous_page_number }}">上一页</a>
+                            {% endif %}
+
+                            <span class="current">
+                        第{{ newspages.number }}页/共 {{ newspages.paginator.num_pages }}页</span>
+
+                            {% if newspages.has_next %}
+                            <a class='active' href="?page={{ newspages.next_page_number }}">下一页</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+{% endblock %}

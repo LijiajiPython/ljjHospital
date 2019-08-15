@@ -1,0 +1,13 @@
+.doctorimg {
+    width:200px;
+    height:200px;
+    margin:0 auto;
+    display: block;
+}
+.fords-body div {
+    /*height:100px;*/
+    /*line-height: 100px;*/
+    font-size: 15px;
+    text-align: center;
+    /*border-top:1px black solid;*/
+}

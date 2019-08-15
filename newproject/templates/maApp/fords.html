@@ -1,0 +1,40 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}按科室挂号{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">{{ dsList.dsname }}</div>
+        <div class="fords-body clearFix" style="padding:60px 0;">
+            {% for i in roomList %}
+                    <div class="fords-body-each clearFix">
+                        <div class="fords-body-each-img">
+                            <a href="/hospitals/{{ i.hid_id }}/"><h4 style="margin:0;padding:10px 0;background-color: #5eb0ff;color:white">{{ i.hid }}</h4></a>
+                            <h4 style="padding:15px;">{{ i.rname }}</h4>
+                            <h5>主治:{{ i.dsid }}</h5>
+                        </div>
+                        <div class="fords-body-each-text">
+                            <h4>科室医生:</h4>
+                            {% for j in doctorList %}
+                                {% if j.rid_id == i.id %}
+                                    <span>{{ j.dname }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div style="float:right">
+                            <a href="/rooms/{{ i.id }}/"><span class="btn btn-primary pull-right" style="margin:58px" value="">前往挂号</span></a>
+                        </div>
+                    </div>
+            {% empty %}
+            <div style="height:260px;padding:50px 200px;">
+                <h3 style="text-align: center">没有适合的科室</h3>
+                <a href="/home/"><button class="btn btn-primary pull-right" style="margin-top:60px;">返回主页</button></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

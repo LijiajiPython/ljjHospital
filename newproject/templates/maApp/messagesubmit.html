@@ -1,0 +1,36 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}挂号页面{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">您选择的日期是:{{ messageList.mname }}</div>
+        {% if request.session.is_doctor %}
+            <div style="padding:120px 0;"><h3 style="text-align: center">请使用患者用户预约挂号</h3></div>
+        {% elif request.session.is_user %}
+            <div class="fords-middle">
+                <h4>当前预约人数：{{ messageList.mnumber }}</h4>
+                <h4>预约挂号费用：{{ messageList.mprice }}</h4>
+            </div>
+            <hr style="border-top:1px black dashed;margin:10px 0;">
+            <form action="/page1/" method="post">
+                {% csrf_token %}
+                <div style="height: 0;overflow: hidden">
+                    <input type="radio" name="message_id" value="{{ messageList.id }}" checked>
+                    <input type="radio" name="message_uid" value="{{ request.session.user_id }}" checked>
+                </div>
+                <div class="form-button clearFix">
+                    <h4>是否确定预约？</h4>
+                    <a href="/rooms/{{ messageList.rid_id }}"><span class="btn btn-primary pull-left" value="">返回</span></a>
+                    <button type="submit" class="btn btn-primary pull-right" value="">确定</button>
+                </div>
+                <p style="color: red">{{ error }}</p>
+            </form>
+        <span style="float:right">提示：在支付时请勿关闭页面。</span>
+        {% endif %}
+    </div>
+{% endblock %}

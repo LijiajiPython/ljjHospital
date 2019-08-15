@@ -1,0 +1,110 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}医生主页{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+    <link rel="stylesheet" href="../../static/css/doctors.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">{{ doctorList.dname }}</div>
+        <div class="fords-middle clearFix">
+            <div class="clearFix">
+                <div id="fords-middle-docimg">
+                    <img src="../../{{ doctorList.dphoto }}" alt="">
+                </div>
+                <table class="fords-middle-table">
+                    <tr>
+                        <td><h4>性别:</h4></td>
+                        <td><h4>
+                            {% if doctorList.dgender == 'female' %}
+                                女
+                            {% else %}
+                                男
+                            {% endif %}
+                        </h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>级别:</h4></td>
+                        <td>
+                            {% if j.dlevel == '1' %}
+                            <h4>医师</h4>
+                            {% elif j.dlevel == '2' %}
+                            <h4>主治医师</h4>
+                            {% elif j.dlevel == '3' %}
+                            <h4>副主任医师</h4>
+                            {% else %}
+                            <h4>主任医师</h4>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4>出生日期:</h4></td>
+                        <td><h4>{{ doctorList.dbirth }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>电话:</h4></td>
+                        <td><h4>{{ doctorList.dtel }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>邮箱:</h4></td>
+                        <td><h4>{{ doctorList.demail }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>所在科室:</h4></td>
+                        <td><h4>{{ doctorList.rid }}</h4></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="fords-middle-doctext">
+                <h3>个人简介</h3>
+                <h5 style="text-align: left">{{ doctorList.dtext }}</h5>
+            </div>
+        </div>
+        {% if request.session.is_user %}
+        <div class="fords-body clearFix">
+            <form action="/doctors/{{ doctorList.id }}/" method="post">
+                <div style="height: 0;overflow: hidden">
+                    <input type="radio" name="uid_id" value="{{ request.session.user_id }}" checked>
+                    <input type="radio" name="did_id" value="{{ doctorList.id }}" checked>
+                    <input type="radio" name="breply" value="暂无回复" checked>
+                </div>
+                <div class="clearFix" style="margin:30px 100px;">
+                    <h3 style="text-align: center">发布留言</h3>
+                    <textarea rows="6" cols="100" name="btext" style="resize: none;" placeholder="请输入您想对{{ doctorList.dname }}医生说的话：" required></textarea>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        <div class="fords-body clearFix">
+            <h3 style="text-align: center">患者留言</h3>
+            {% for i in boardpages %}
+            <div class="board-body">
+                <h4>{{ i.uid }}:</h4>
+                <h6 style="text-align: left">{{ i.createtime }}</h6>
+                <p>{{ i.btext }}</p>
+                <h4 style="border-top:1px dashed black;padding-top:5px;">医生回复:</h4>
+                <p>{{ i.breply }}</p>
+            </div>
+            {% endfor %}
+            <div id="pages" class="text-center" >
+        <nav>
+            <ul class="pagination">
+                <li class="step-links">
+                {% if boardpages.has_previous %}
+                    <a class='active' href="?page={{ boardpages.previous_page_number }}">上一页</a>
+                {% endif %}
+
+                <span class="current">
+                    第{{ boardpages.number }}页/共{{ boardpages.paginator.num_pages }}页</span>
+
+                {% if boardpages.has_next %}
+                    <a class='active' href="?page={{ boardpages.next_page_number }}">下一页</a>
+                {% endif %}
+                </li></ul></nav></div>
+        </div>
+    </div>
+{% endblock %}

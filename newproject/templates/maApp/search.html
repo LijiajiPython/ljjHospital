@@ -1,0 +1,45 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}搜索结果{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">搜索结果</div>
+        <div class="fords-body clearFix">
+            <div class="fords-body-each clearFix" style="border:none">
+                <div style="width:400px;margin:0;padding:10px 20px;background-color: #5eb0ff;color:white"><h4>查医院</h4></div>
+                <div style="border:1px solid gray;padding-left:20px;">
+                    {% for i in hospitalList %}
+                    <h4><a href="/hospitals/{{ i.id }}/" style="color:blue">{{ i.hname }}</a></h4>
+                    {% empty %}
+                    <h4>无搜索结果</h4>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="fords-body-each clearFix" style="border:none">
+                <div style="width:400px;margin:0;padding:10px 20px;background-color: #5eb0ff;color:white"><h4>查科室</h4></div>
+                <div style="border:1px solid gray;padding-left:20px;">
+                    {% for i in roomList %}
+                    <h4><a href="/rooms/{{ i.id }}/" style="color:blue">{{ i.rname }}</a></h4>
+                    {% empty %}
+                    <h4>无搜索结果</h4>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="fords-body-each clearFix" style="border:none">
+                <div style="width:400px;margin:0;padding:10px 20px;background-color: #5eb0ff;color:white"><h4>查医生</h4></div>
+                <div style="border:1px solid gray;padding-left:20px;">
+                    {% for i in doctorList %}
+                    <h4><a href="/doctors/{{ i.id }}" style="color:blue">{{ i.dname }}</a></h4>
+                    {% empty %}
+                    <h4>无搜索结果</h4>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

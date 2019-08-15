@@ -1,0 +1,90 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}医院主页{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">{{ hospitalList.hname }}</div>
+        <div class="fords-middle clearFix">
+            <div class="clearFix">
+                <div id="fords-middle-docimg">
+                <img src="../../{{ hospitalList.hphoto }}" alt="">
+            </div>
+                <div class="fords-middle-doctable">
+                <table class="fords-middle-table">
+                    <tr>
+                        <td><h4>所在县/区</h4></td>
+                        <td><h4>{{ hospitalList.cid }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>医院地址:</h4></td>
+                        <td><h4>{{ hospitalList.haddress }}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>等级:</h4></td>
+                        <td>
+                            {% if hospitalList.hlevel == '1' %}
+                                <h4>三级甲等</h4>
+                            {% elif hospitalList.hlevel == '2' %}
+                                <h4>三级乙等</h4>
+                            {% elif hospitalList.hlevel == '3' %}
+                                <h4>三级丙等</h4>
+                            {% elif hospitalList.hlevel == '4' %}
+                                <h4>二级甲等</h4>
+                            {% elif hospitalList.hlevel == '5' %}
+                                <h4>二级乙等</h4>
+                            {% elif hospitalList.hlevel == '6' %}
+                                <h4>二级丙等</h4>
+                            {% elif hospitalList.hlevel == '7' %}
+                                <h4>一级甲等</h4>
+                            {% elif hospitalList.hlevel == '8' %}
+                                <h4>一级乙等</h4>
+                            {% elif hospitalList.hlevel == '9' %}
+                                <h4>一级丙等</h4>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4>电话</h4></td>
+                        <td><h4>{{ hospitalList.htel }}</h4></td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+
+            <div class="fords-middle-doctext">
+                <span><h3>医院描述:</h3>
+                    <h5 style="text-align: left;">{{ hospitalList.htext }}</h5>
+                </span>
+            </div>
+        </div>
+        <div class="fords-body clearFix">
+            <h3 style="text-align: center">开放预约科室</h3>
+            {% for i in roomList %}
+                    <div class="fords-body-each clearFix">
+                        <div class="fords-body-each-img">
+                            <h4 style="padding:20px;">{{ i.rname }}</h4>
+                            <h5>主治:{{ i.dsid }}</h5>
+                        </div>
+                        <div class="fords-body-each-text">
+                            <h4>科室医生:</h4>
+                            {% for j in doctorList %}
+                                {% if j.rid_id == i.id %}
+                                    <span>{{ j.dname }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div style="float:right">
+                            <a href="/rooms/{{ i.id }}/"><span class="btn btn-primary pull-right" style="margin:58px" value="">前往挂号</span></a>
+                        </div>
+                    </div>
+            {% empty %}
+             <h4 style="text-align: center;margin-top:20px;">没有可预约的科室</h4>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

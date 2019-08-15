@@ -1,0 +1,57 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="../../static/css/main.css">
+    <script src="../../static/js/jquery-3.0.0.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../../static/css/bootstrap-3.3.7-dist/css/bootstrap.css">
+    {% block linkscript %}
+    {% endblock linkscript %}
+</head>
+<body>
+<!--导航栏开始-->
+<header class="navigator clearFix">
+    <a href="/home/"><span class="span1">首页</span></a>
+    <a href="/news/"><span class="span1">公告</span></a>
+    <div style="float:right">
+        {% if request.session.is_login %}
+            {% if request.session.is_doctor %}
+                <span class="span2">当前在线：{{ request.session.user_name }}医生</span>
+                <a href="/dochome/{{ request.session.user_id }}"><span class="span1">个人信息</span></a>
+            {% elif request.session.is_user %}
+                <span class="span2">当前在线：{{ request.session.user_name }}</span>
+                <a href="/userhome/{{ request.session.user_id }}"><span class="span1">个人信息</span></a>
+            {% endif %}
+            <a href="/logout/"><span class="span1">注销</span></a>
+        {% else %}
+            <a href="/login/"><span class="span1">登录</span></a>
+            <a href="/register/"><span class="span1">注册</span></a>
+        {% endif %}
+    </div>
+</header>
+<!--导航栏结束-->
+<!--logo开始-->
+<div class="logo clearFix">
+    <h1>城市医院预约挂号系统</h1>
+
+    <!--<a href="#" id="logoa"><span class="formspan">搜索</span></a>-->
+    <form action="/search/" method="post" class="form clearFix">
+        <input type="text" placeholder="请输入关键字" name="word" id="text">
+        <button type="submit" class="btn btn-primary pull-right" value="" style="height:40px;width: 60px;">搜索</button>
+    </form>
+</div>
+<!--logo结束-->
+<!--版心-->
+<div class="center">
+    {% block center %}
+    {% endblock center %}
+</div>
+<!--版心结束-->
+<footer>
+
+</footer>
+</body>
+</html>

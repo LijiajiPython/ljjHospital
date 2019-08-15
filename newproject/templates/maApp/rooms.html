@@ -1,0 +1,99 @@
+{% extends 'maApp/main.html' %}
+{% load static from staticfiles %}
+
+{% block title %}科室主页{% endblock title %}
+
+{% block linkscript %}
+    <link rel="stylesheet" href="../../static/css/fords.css">
+{% endblock linkscript %}
+{% block center %}
+    <div class="fords">
+        <div class="fords-title">{{ roomList.rname }}</div>
+        <div class="fords-middle clearFix">
+            <div class="clearFix"><h4 style="float:right">科室电话:{{ roomList.rtel }}</h4></div>
+            <h3>科室描述</h3>
+            <h5 style="text-align: left;">{{ roomList.rtext }}</h5>
+            <h3 style="border-top:1px black dashed;padding-top:20px;">科室医生</h3>
+            {% for j in doctorList %}
+                <a href="/doctors/{{ j.id }}/">
+                    <div class="fords-middle-each">
+                        <img src="../../{{ j.dphoto }}" alt="">
+                        {% if j.dlevel == '1' %}
+                        <h5>医师</h5>
+                        {% elif j.dlevel == '2' %}
+                        <h5>主治医师</h5>
+                        {% elif j.dlevel == '3' %}
+                        <h5>副主任医师</h5>
+                        {% else %}
+                        <h5>主任医师</h5>
+                        {% endif %}
+                        <h4>{{ j.dname }}</h4>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="fords-body">
+            <h3 style="text-align: center;">值班时间</h3>
+            <table class="fords-body-table">
+                        <tr style="background-color: #67c8ff">
+                            <td></td>
+                            <td><h3>一</h3></td>
+                            <td><h3>二</h3></td>
+                            <td><h3>三</h3></td>
+                            <td><h3>四</h3></td>
+                            <td><h3>五</h3></td>
+                            <td><h3>六</h3></td>
+                            <td><h3>七</h3></td>
+                        </tr>
+                        <tr>
+                            <td><h3>上午</h3></td>
+                            <td><div class="workdoctor">{{ roomList.mon1 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.tue1 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.wed1 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.thu1 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.fri1 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.sat1 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.sun1 }}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h3>下午</h3></td>
+                            <td><div class="workdoctor">{{ roomList.mon2 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.tue2 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.wed2 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.thu2 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.fri2 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.sat2 }}</div>
+                            </td>
+                            <td><div class="workdoctor">{{ roomList.sun2 }}</div>
+                            </td>
+                        </tr>
+                    </table>
+        </div>
+        <div class="fords-body clearFix">
+            {% for i in messageList %}
+                <div class="fords-body-message" style="margin-right:2.5px;"><h4 style="margin:0;padding:10px;background-color: #5eb0ff;color:white">{{ i.mname }}</h4>
+                    <hr style="margin-top:0;">
+                    <p>当前已挂号人数{{ i.mnumber }}</p>
+                    {% if request.session.is_login %}
+                        <button class="btn"><a href="/messagesubmit/{{ i.id }}/">我要挂号</a></button>
+                    {% else %}
+                        <button><a href="/login/">登录后挂号</a></button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <span style="float:right">提示：若预约日期显示异常，请刷新页面。</span>
+    </div>
+{% endblock %}
